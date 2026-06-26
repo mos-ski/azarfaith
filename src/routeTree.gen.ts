@@ -9,38 +9,141 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegisterOrgRouteImport } from './routes/register-org'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as CreateRouteImport } from './routes/create'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrgIdRouteImport } from './routes/org.$id'
+import { Route as DonateIdRouteImport } from './routes/donate.$id'
+import { Route as CampaignIdRouteImport } from './routes/campaign.$id'
 
+const RegisterOrgRoute = RegisterOrgRouteImport.update({
+  id: '/register-org',
+  path: '/register-org',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrgIdRoute = OrgIdRouteImport.update({
+  id: '/org/$id',
+  path: '/org/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateIdRoute = DonateIdRouteImport.update({
+  id: '/donate/$id',
+  path: '/donate/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampaignIdRoute = CampaignIdRouteImport.update({
+  id: '/campaign/$id',
+  path: '/campaign/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/discover': typeof DiscoverRoute
+  '/register-org': typeof RegisterOrgRoute
+  '/campaign/$id': typeof CampaignIdRoute
+  '/donate/$id': typeof DonateIdRoute
+  '/org/$id': typeof OrgIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/discover': typeof DiscoverRoute
+  '/register-org': typeof RegisterOrgRoute
+  '/campaign/$id': typeof CampaignIdRoute
+  '/donate/$id': typeof DonateIdRoute
+  '/org/$id': typeof OrgIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/discover': typeof DiscoverRoute
+  '/register-org': typeof RegisterOrgRoute
+  '/campaign/$id': typeof CampaignIdRoute
+  '/donate/$id': typeof DonateIdRoute
+  '/org/$id': typeof OrgIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/create'
+    | '/discover'
+    | '/register-org'
+    | '/campaign/$id'
+    | '/donate/$id'
+    | '/org/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/create'
+    | '/discover'
+    | '/register-org'
+    | '/campaign/$id'
+    | '/donate/$id'
+    | '/org/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/create'
+    | '/discover'
+    | '/register-org'
+    | '/campaign/$id'
+    | '/donate/$id'
+    | '/org/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateRoute: typeof CreateRoute
+  DiscoverRoute: typeof DiscoverRoute
+  RegisterOrgRoute: typeof RegisterOrgRoute
+  CampaignIdRoute: typeof CampaignIdRoute
+  DonateIdRoute: typeof DonateIdRoute
+  OrgIdRoute: typeof OrgIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/register-org': {
+      id: '/register-org'
+      path: '/register-org'
+      fullPath: '/register-org'
+      preLoaderRoute: typeof RegisterOrgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +151,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/org/$id': {
+      id: '/org/$id'
+      path: '/org/$id'
+      fullPath: '/org/$id'
+      preLoaderRoute: typeof OrgIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate/$id': {
+      id: '/donate/$id'
+      path: '/donate/$id'
+      fullPath: '/donate/$id'
+      preLoaderRoute: typeof DonateIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campaign/$id': {
+      id: '/campaign/$id'
+      path: '/campaign/$id'
+      fullPath: '/campaign/$id'
+      preLoaderRoute: typeof CampaignIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateRoute: CreateRoute,
+  DiscoverRoute: DiscoverRoute,
+  RegisterOrgRoute: RegisterOrgRoute,
+  CampaignIdRoute: CampaignIdRoute,
+  DonateIdRoute: DonateIdRoute,
+  OrgIdRoute: OrgIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
