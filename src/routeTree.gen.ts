@@ -9,7 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as RegisterOrgRouteImport } from './routes/register-org'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,9 +20,24 @@ import { Route as OrgIdRouteImport } from './routes/org.$id'
 import { Route as DonateIdRouteImport } from './routes/donate.$id'
 import { Route as CampaignIdRouteImport } from './routes/campaign.$id'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterOrgRoute = RegisterOrgRouteImport.update({
   id: '/register-org',
   path: '/register-org',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -57,7 +75,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/create': typeof CreateRoute
   '/discover': typeof DiscoverRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/register-org': typeof RegisterOrgRoute
+  '/signup': typeof SignupRoute
   '/campaign/$id': typeof CampaignIdRoute
   '/donate/$id': typeof DonateIdRoute
   '/org/$id': typeof OrgIdRoute
@@ -66,7 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/create': typeof CreateRoute
   '/discover': typeof DiscoverRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/register-org': typeof RegisterOrgRoute
+  '/signup': typeof SignupRoute
   '/campaign/$id': typeof CampaignIdRoute
   '/donate/$id': typeof DonateIdRoute
   '/org/$id': typeof OrgIdRoute
@@ -76,7 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/create': typeof CreateRoute
   '/discover': typeof DiscoverRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/register-org': typeof RegisterOrgRoute
+  '/signup': typeof SignupRoute
   '/campaign/$id': typeof CampaignIdRoute
   '/donate/$id': typeof DonateIdRoute
   '/org/$id': typeof OrgIdRoute
@@ -87,7 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/create'
     | '/discover'
+    | '/forgot-password'
+    | '/login'
     | '/register-org'
+    | '/signup'
     | '/campaign/$id'
     | '/donate/$id'
     | '/org/$id'
@@ -96,7 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/create'
     | '/discover'
+    | '/forgot-password'
+    | '/login'
     | '/register-org'
+    | '/signup'
     | '/campaign/$id'
     | '/donate/$id'
     | '/org/$id'
@@ -105,7 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/create'
     | '/discover'
+    | '/forgot-password'
+    | '/login'
     | '/register-org'
+    | '/signup'
     | '/campaign/$id'
     | '/donate/$id'
     | '/org/$id'
@@ -115,7 +151,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateRoute: typeof CreateRoute
   DiscoverRoute: typeof DiscoverRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
   RegisterOrgRoute: typeof RegisterOrgRoute
+  SignupRoute: typeof SignupRoute
   CampaignIdRoute: typeof CampaignIdRoute
   DonateIdRoute: typeof DonateIdRoute
   OrgIdRoute: typeof OrgIdRoute
@@ -123,11 +162,32 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register-org': {
       id: '/register-org'
       path: '/register-org'
       fullPath: '/register-org'
       preLoaderRoute: typeof RegisterOrgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover': {
@@ -179,7 +239,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateRoute: CreateRoute,
   DiscoverRoute: DiscoverRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
   RegisterOrgRoute: RegisterOrgRoute,
+  SignupRoute: SignupRoute,
   CampaignIdRoute: CampaignIdRoute,
   DonateIdRoute: DonateIdRoute,
   OrgIdRoute: OrgIdRoute,
