@@ -1,5 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ShieldCheck, MapPin, Calendar, Repeat2, Target, ArrowRight, Users, Heart } from "lucide-react";
+import {
+  ShieldCheck,
+  MapPin,
+  Calendar,
+  Repeat2,
+  Target,
+  ArrowRight,
+  Users,
+  Heart,
+} from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { useApp } from "@/lib/store";
 import { formatMoney } from "@/lib/mock";
@@ -58,8 +67,12 @@ function OrgProfile() {
               <h1 className="font-display text-3xl md:text-4xl">{org.name}</h1>
               <p className="text-muted-foreground mt-1">{org.tagline}</p>
               <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {org.location}</span>
-                <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Est. {org.founded}</span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5" /> {org.location}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5" /> Est. {org.founded}
+                </span>
                 <span>{org.denomination}</span>
               </div>
             </div>
@@ -116,7 +129,11 @@ function OrgProfile() {
             <div className="grid grid-cols-3 gap-3">
               {org.photos.map((photo, i) => (
                 <div key={i} className="aspect-square rounded-2xl overflow-hidden">
-                  <img src={photo} alt="" className="w-full h-full object-cover hover:scale-105 transition duration-300" />
+                  <img
+                    src={photo}
+                    alt=""
+                    className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                  />
                 </div>
               ))}
             </div>
@@ -135,21 +152,33 @@ function OrgProfile() {
                 <Link key={c.id} to="/campaign/$id" params={{ id: c.id }} className="group block">
                   <article className="bg-card border border-border rounded-2xl overflow-hidden hover:border-amber-300 transition flex gap-4">
                     <div className="w-28 shrink-0 overflow-hidden">
-                      <img src={c.cover} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                      <img
+                        src={c.cover}
+                        alt=""
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                      />
                     </div>
                     <div className="py-4 pr-4 flex flex-col justify-between min-h-[100px]">
                       <div>
                         <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">Ongoing</span>
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">
+                            Ongoing
+                          </span>
                           {c.frequencies && (
-                            <span className="text-xs text-muted-foreground">{c.frequencies.join(" · ")}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {c.frequencies.join(" · ")}
+                            </span>
                           )}
                         </div>
-                        <h3 className="font-display text-base leading-snug line-clamp-2">{c.title}</h3>
+                        <h3 className="font-display text-base leading-snug line-clamp-2">
+                          {c.title}
+                        </h3>
                       </div>
                       <div className="flex items-center justify-between text-xs mt-2">
                         <span className="text-muted-foreground">{c.donors} supporters</span>
-                        <span className="text-amber-600 font-medium flex items-center gap-1">Give monthly <ArrowRight className="w-3 h-3" /></span>
+                        <span className="text-amber-600 font-medium flex items-center gap-1">
+                          Give monthly <ArrowRight className="w-3 h-3" />
+                        </span>
                       </div>
                     </div>
                   </article>
@@ -173,17 +202,28 @@ function OrgProfile() {
                   <Link key={c.id} to="/campaign/$id" params={{ id: c.id }} className="group block">
                     <article className="bg-card border border-border rounded-2xl overflow-hidden hover:border-amber-300 transition flex gap-4">
                       <div className="w-28 shrink-0 overflow-hidden">
-                        <img src={c.cover} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                        <img
+                          src={c.cover}
+                          alt=""
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                        />
                       </div>
                       <div className="py-4 pr-4 flex flex-col justify-between min-h-[100px]">
-                        <h3 className="font-display text-base leading-snug line-clamp-2">{c.title}</h3>
+                        <h3 className="font-display text-base leading-snug line-clamp-2">
+                          {c.title}
+                        </h3>
                         <div>
                           <div className="h-1 rounded-full bg-muted overflow-hidden mb-1.5">
-                            <div className="h-full bg-amber-500 rounded-full" style={{ width: `${pct}%` }} />
+                            <div
+                              className="h-full bg-amber-500 rounded-full"
+                              style={{ width: `${pct}%` }}
+                            />
                           </div>
                           <div className="flex items-center justify-between text-xs">
                             <span className="font-medium">{formatMoney(c.raised)}</span>
-                            <span className="text-muted-foreground">of {formatMoney(c.goal ?? 0)} · {pct}%</span>
+                            <span className="text-muted-foreground">
+                              of {formatMoney(c.goal ?? 0)} · {pct}%
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -200,7 +240,9 @@ function OrgProfile() {
           <div className="text-center py-12 bg-muted/30 rounded-2xl">
             <Heart className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
             <p className="font-medium">No campaigns yet</p>
-            <p className="text-sm text-muted-foreground mt-1">This org hasn't created any campaigns yet.</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              This org hasn't created any campaigns yet.
+            </p>
             <Link
               to="/create"
               className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 text-white text-sm font-medium hover:bg-amber-600 transition"
@@ -213,7 +255,9 @@ function OrgProfile() {
         {/* Share / support CTA */}
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center">
           <h3 className="font-display text-lg">Help them reach more people</h3>
-          <p className="text-sm text-muted-foreground mt-1 mb-4">Share this org profile with your network. Every share matters.</p>
+          <p className="text-sm text-muted-foreground mt-1 mb-4">
+            Share this org profile with your network. Every share matters.
+          </p>
           <div className="flex justify-center gap-3">
             <button
               onClick={() => {

@@ -28,15 +28,25 @@ function MyGiving() {
 
         <div className="mt-8 space-y-4">
           {active.length === 0 && (
-            <p className="text-sm text-muted-foreground">You don't have any active recurring gifts yet.</p>
+            <p className="text-sm text-muted-foreground">
+              You don't have any active recurring gifts yet.
+            </p>
           )}
           {active.map((r) => (
-            <div key={r.id} className="flex items-center gap-4 p-4 rounded-2xl bg-card border border-border">
-              <img src={r.targetCover} alt="" className="w-14 h-14 rounded-xl object-cover shrink-0" />
+            <div
+              key={r.id}
+              className="flex items-center gap-4 p-4 rounded-2xl bg-card border border-border"
+            >
+              <img
+                src={r.targetCover}
+                alt=""
+                className="w-14 h-14 rounded-xl object-cover shrink-0"
+              />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">{r.targetName}</p>
                 <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1.5">
-                  <Repeat2 className="w-3 h-3" /> {formatMoney(r.amount)} · {frequencyLabel[r.frequency]} · {r.mode === "auto" ? "Automatic" : "Reminder"}
+                  <Repeat2 className="w-3 h-3" /> {formatMoney(r.amount)} ·{" "}
+                  {frequencyLabel[r.frequency]} · {r.mode === "auto" ? "Automatic" : "Reminder"}
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5">Next: {r.nextDate}</p>
               </div>
@@ -56,11 +66,20 @@ function MyGiving() {
             <h2 className="text-sm font-medium text-muted-foreground">Cancelled</h2>
             <div className="mt-3 space-y-3">
               {cancelled.map((r) => (
-                <div key={r.id} className="flex items-center gap-4 p-4 rounded-2xl border border-border opacity-60">
-                  <img src={r.targetCover} alt="" className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                <div
+                  key={r.id}
+                  className="flex items-center gap-4 p-4 rounded-2xl border border-border opacity-60"
+                >
+                  <img
+                    src={r.targetCover}
+                    alt=""
+                    className="w-12 h-12 rounded-xl object-cover shrink-0"
+                  />
                   <div className="min-w-0">
                     <p className="text-sm font-medium truncate">{r.targetName}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{formatMoney(r.amount)} · {frequencyLabel[r.frequency]} · Cancelled</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {formatMoney(r.amount)} · {frequencyLabel[r.frequency]} · Cancelled
+                    </p>
                   </div>
                 </div>
               ))}
@@ -68,7 +87,10 @@ function MyGiving() {
           </div>
         )}
 
-        <Link to="/discover" className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition">
+        <Link
+          to="/discover"
+          className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition"
+        >
           Discover more causes to support
         </Link>
       </main>

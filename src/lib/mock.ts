@@ -19,7 +19,8 @@ const photos = [
   "1559027615-cd4628902d4a",
 ];
 
-const p = (i: number) => `https://images.unsplash.com/photo-${photos[i % photos.length]}?auto=format&fit=crop&w=1200&q=80`;
+const p = (i: number) =>
+  `https://images.unsplash.com/photo-${photos[i % photos.length]}?auto=format&fit=crop&w=1200&q=80`;
 
 export type Category =
   | "Church Building"
@@ -183,10 +184,16 @@ export const campaigns: Campaign[] = [
     mode: "ongoing",
     type: "money",
     title: "Support ECWA Missionaries in Borno",
-    story: "Our team of 12 missionaries lives in Borno State, one of the most challenging mission fields in Nigeria. They need monthly support for food, transport, and ministry materials. Your recurring gift keeps them on the field.",
+    story:
+      "Our team of 12 missionaries lives in Borno State, one of the most challenging mission fields in Nigeria. They need monthly support for food, transport, and ministry materials. Your recurring gift keeps them on the field.",
     faithCategory: "Missions & Outreach",
     orgId: "o1",
-    raiser: { name: "ECWA Mission Board", avatar: p(0), location: "Kaduna, Nigeria", trustScore: 94 },
+    raiser: {
+      name: "ECWA Mission Board",
+      avatar: p(0),
+      location: "Kaduna, Nigeria",
+      trustScore: 94,
+    },
     cover: p(1),
     gallery: [p(1), p(2), p(3)],
     raised: 1840000,
@@ -197,10 +204,21 @@ export const campaigns: Campaign[] = [
     createdAt: "2025-01-15",
     verificationStatus: "verified",
     updates: [
-      { id: "u1", date: "2025-05-10", title: "12 communities reached this quarter", body: "Our Borno team completed outreaches in 12 new communities. 3 small groups now meeting weekly. Thank you for making this possible." },
+      {
+        id: "u1",
+        date: "2025-05-10",
+        title: "12 communities reached this quarter",
+        body: "Our Borno team completed outreaches in 12 new communities. 3 small groups now meeting weekly. Thank you for making this possible.",
+      },
     ],
     comments: [
-      { id: "c1", author: "Funke O.", avatar: p(4), date: "3 days ago", body: "Praying for your team. What you're doing matters." },
+      {
+        id: "c1",
+        author: "Funke O.",
+        avatar: p(4),
+        date: "3 days ago",
+        body: "Praying for your team. What you're doing matters.",
+      },
     ],
     donations: [
       { id: "d1", donor: "Anonymous", amount: 50000, date: "1d" },
@@ -213,10 +231,16 @@ export const campaigns: Campaign[] = [
     mode: "ongoing",
     type: "money",
     title: "Keep the Church Under The Bridge Running",
-    story: "Every Sunday we show up under Third Mainland Bridge and serve whoever comes. We need ₦150,000 monthly for food, bibles, and basic supplies. We've never missed a Sunday in 16 years and we don't plan to start.",
+    story:
+      "Every Sunday we show up under Third Mainland Bridge and serve whoever comes. We need ₦150,000 monthly for food, bibles, and basic supplies. We've never missed a Sunday in 16 years and we don't plan to start.",
     faithCategory: "Church Building",
     orgId: "o2",
-    raiser: { name: "Church Under The Bridge Lagos", avatar: p(3), location: "Lagos Island, Nigeria", trustScore: 97 },
+    raiser: {
+      name: "Church Under The Bridge Lagos",
+      avatar: p(3),
+      location: "Lagos Island, Nigeria",
+      trustScore: 97,
+    },
     cover: p(4),
     gallery: [p(4), p(5)],
     raised: 4200000,
@@ -227,11 +251,27 @@ export const campaigns: Campaign[] = [
     createdAt: "2024-08-01",
     verificationStatus: "verified",
     updates: [
-      { id: "u2", date: "2025-05-18", title: "340 people fed last Sunday", body: "Record attendance this week. We were nearly out of food by the end. Thank God for a ₦80,000 donation that helped us manage." },
-      { id: "u3", date: "2025-05-04", title: "100 new bibles distributed", body: "100 new bibles distributed to people who had never owned one. Some wept. This is why we do this." },
+      {
+        id: "u2",
+        date: "2025-05-18",
+        title: "340 people fed last Sunday",
+        body: "Record attendance this week. We were nearly out of food by the end. Thank God for a ₦80,000 donation that helped us manage.",
+      },
+      {
+        id: "u3",
+        date: "2025-05-04",
+        title: "100 new bibles distributed",
+        body: "100 new bibles distributed to people who had never owned one. Some wept. This is why we do this.",
+      },
     ],
     comments: [
-      { id: "c2", author: "Tunde A.", avatar: p(4), date: "1 week ago", body: "I've visited twice. The love here is real." },
+      {
+        id: "c2",
+        author: "Tunde A.",
+        avatar: p(4),
+        date: "1 week ago",
+        body: "I've visited twice. The love here is real.",
+      },
     ],
     donations: [
       { id: "d3", donor: "Anonymous", amount: 10000, date: "2h" },
@@ -244,7 +284,8 @@ export const campaigns: Campaign[] = [
     mode: "ongoing",
     type: "money",
     title: "Missionary Kolade — Wells & Community Work",
-    story: "Kolade Akinwale has been digging wells and building latrines in underserved communities across North-Central Nigeria for 7 years. He doesn't have a target — he just needs consistent support to keep going. Follow his work, give what you can, whenever you can.",
+    story:
+      "Kolade Akinwale has been digging wells and building latrines in underserved communities across North-Central Nigeria for 7 years. He doesn't have a target — he just needs consistent support to keep going. Follow his work, give what you can, whenever you can.",
     faithCategory: "Missions & Outreach",
     orgId: "o4",
     raiser: { name: "Kolade Akinwale", avatar: p(9), location: "Kwara, Nigeria", trustScore: 88 },
@@ -258,7 +299,12 @@ export const campaigns: Campaign[] = [
     createdAt: "2024-12-01",
     verificationStatus: "unverified",
     updates: [
-      { id: "u4", date: "2025-05-12", title: "5th well completed in Kwara", body: "Took 18 days. Community of 400 people now have clean water. Next stop: Edu Local Government." },
+      {
+        id: "u4",
+        date: "2025-05-12",
+        title: "5th well completed in Kwara",
+        body: "Took 18 days. Community of 400 people now have clean water. Next stop: Edu Local Government.",
+      },
     ],
     comments: [],
     donations: [
@@ -271,7 +317,8 @@ export const campaigns: Campaign[] = [
     mode: "one-time",
     type: "money",
     title: "Build a permanent worship hall for ECWA Kano",
-    story: "Our congregation of 180 believers in Kano has been meeting under a tent for 3 years. We have land, architectural drawings, and a builder ready. We need ₦8.5M to complete the shell structure — walls, roof, and windows. This is more than a building. It's a statement of presence in Kano.",
+    story:
+      "Our congregation of 180 believers in Kano has been meeting under a tent for 3 years. We have land, architectural drawings, and a builder ready. We need ₦8.5M to complete the shell structure — walls, roof, and windows. This is more than a building. It's a statement of presence in Kano.",
     faithCategory: "Church Building",
     orgId: "o1",
     raiser: { name: "ECWA Mission Board", avatar: p(0), location: "Kano, Nigeria", trustScore: 94 },
@@ -286,10 +333,21 @@ export const campaigns: Campaign[] = [
     createdAt: "2025-03-10",
     verificationStatus: "verified",
     updates: [
-      { id: "u5", date: "2025-05-08", title: "Foundation complete", body: "The foundation was laid last Saturday. Over 60 congregation members helped dig. 60% funded — we're almost there." },
+      {
+        id: "u5",
+        date: "2025-05-08",
+        title: "Foundation complete",
+        body: "The foundation was laid last Saturday. Over 60 congregation members helped dig. 60% funded — we're almost there.",
+      },
     ],
     comments: [
-      { id: "c3", author: "Pastor David O.", avatar: p(5), date: "5 days ago", body: "I built a church in 2019 and know what this moment feels like. Donating ₦500,000 right now." },
+      {
+        id: "c3",
+        author: "Pastor David O.",
+        avatar: p(5),
+        date: "5 days ago",
+        body: "I built a church in 2019 and know what this moment feels like. Donating ₦500,000 right now.",
+      },
     ],
     donations: [
       { id: "d6", donor: "Anonymous", amount: 500000, date: "5d" },
@@ -301,10 +359,16 @@ export const campaigns: Campaign[] = [
     mode: "one-time",
     type: "item",
     title: "Grace Harvest needs 20 bunk beds for new children",
-    story: "We recently took in 8 more children displaced from Plateau. Our dormitories are over capacity. We need 20 bunk beds with mattresses urgently. ₦1.2M will cover beds, mattresses, and bedding for all new children.",
+    story:
+      "We recently took in 8 more children displaced from Plateau. Our dormitories are over capacity. We need 20 bunk beds with mattresses urgently. ₦1.2M will cover beds, mattresses, and bedding for all new children.",
     faithCategory: "Orphanage",
     orgId: "o3",
-    raiser: { name: "Grace Harvest Orphanage", avatar: p(6), location: "Jos, Nigeria", trustScore: 91 },
+    raiser: {
+      name: "Grace Harvest Orphanage",
+      avatar: p(6),
+      location: "Jos, Nigeria",
+      trustScore: 91,
+    },
     cover: p(7),
     gallery: [p(7), p(8)],
     goal: 1200000,
@@ -317,11 +381,15 @@ export const campaigns: Campaign[] = [
     verificationStatus: "verified",
     updates: [],
     comments: [
-      { id: "c4", author: "Blessing C.", avatar: p(9), date: "2 days ago", body: "These children deserve proper rest. Donating now." },
+      {
+        id: "c4",
+        author: "Blessing C.",
+        avatar: p(9),
+        date: "2 days ago",
+        body: "These children deserve proper rest. Donating now.",
+      },
     ],
-    donations: [
-      { id: "d8", donor: "Anonymous", amount: 50000, date: "2d" },
-    ],
+    donations: [{ id: "d8", donor: "Anonymous", amount: 50000, date: "2d" }],
     needs: ["Bunk bed + mattress", "Bedding set", "Pillow"],
   },
   {
@@ -329,9 +397,15 @@ export const campaigns: Campaign[] = [
     mode: "one-time",
     type: "money",
     title: "Emergency food for displaced Christians in Mangu",
-    story: "Following recent violence in Mangu, Plateau State, over 200 Christian families have been displaced. They are sheltering in a church compound with no food supplies. We need ₦3M urgently to provide 2 weeks of food for these families.",
+    story:
+      "Following recent violence in Mangu, Plateau State, over 200 Christian families have been displaced. They are sheltering in a church compound with no food supplies. We need ₦3M urgently to provide 2 weeks of food for these families.",
     faithCategory: "Emergency",
-    raiser: { name: "Plateau Relief Network", avatar: p(11), location: "Jos, Nigeria", trustScore: 79 },
+    raiser: {
+      name: "Plateau Relief Network",
+      avatar: p(11),
+      location: "Jos, Nigeria",
+      trustScore: 79,
+    },
     cover: p(9),
     gallery: [p(9), p(10)],
     goal: 3000000,
@@ -343,12 +417,15 @@ export const campaigns: Campaign[] = [
     createdAt: "2025-05-14",
     verificationStatus: "pending",
     updates: [
-      { id: "u6", date: "2025-05-16", title: "First food delivery made", body: "We delivered rice, beans, and oil to 60 families yesterday. 140 families still waiting. Please keep giving." },
+      {
+        id: "u6",
+        date: "2025-05-16",
+        title: "First food delivery made",
+        body: "We delivered rice, beans, and oil to 60 families yesterday. 140 families still waiting. Please keep giving.",
+      },
     ],
     comments: [],
-    donations: [
-      { id: "d9", donor: "Anonymous", amount: 200000, date: "1d" },
-    ],
+    donations: [{ id: "d9", donor: "Anonymous", amount: 200000, date: "1d" }],
   },
 ];
 

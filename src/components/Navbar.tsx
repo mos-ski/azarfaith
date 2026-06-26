@@ -38,7 +38,12 @@ export function Navbar() {
           ) : (
             <>
               {navLink("/discover", "Discover")}
-              <Link to="/login" className={`transition text-sm ${path === "/login" ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}>Log in</Link>
+              <Link
+                to="/login"
+                className={`transition text-sm ${path === "/login" ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                Log in
+              </Link>
             </>
           )}
           <Link
@@ -49,19 +54,40 @@ export function Navbar() {
           </Link>
         </div>
 
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden w-10 h-10 grid place-items-center rounded-xl hover:bg-muted transition">
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden w-10 h-10 grid place-items-center rounded-xl hover:bg-muted transition"
+        >
           {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {menuOpen && (
         <div className="md:hidden border-t border-border px-5 pb-5 pt-2 space-y-3 animate-in-up">
-          <Link to="/discover" onClick={() => setMenuOpen(false)} className="block py-2 text-sm text-muted-foreground">Discover</Link>
+          <Link
+            to="/discover"
+            onClick={() => setMenuOpen(false)}
+            className="block py-2 text-sm text-muted-foreground"
+          >
+            Discover
+          </Link>
           {authed && (
-            <Link to="/create" onClick={() => setMenuOpen(false)} className="block py-2 text-sm text-muted-foreground">Start campaign</Link>
+            <Link
+              to="/create"
+              onClick={() => setMenuOpen(false)}
+              className="block py-2 text-sm text-muted-foreground"
+            >
+              Start campaign
+            </Link>
           )}
           {!authed && (
-            <Link to="/login" onClick={() => setMenuOpen(false)} className="block py-2 text-sm text-muted-foreground">Log in</Link>
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="block py-2 text-sm text-muted-foreground"
+            >
+              Log in
+            </Link>
           )}
           <Link
             to="/register-org"

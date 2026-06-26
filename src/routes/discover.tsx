@@ -1,6 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Search, ShieldCheck, Repeat2, Target, MapPin, Flame, Globe, Church, Baby, GraduationCap, Users } from "lucide-react";
+import {
+  Search,
+  ShieldCheck,
+  Repeat2,
+  Target,
+  MapPin,
+  Flame,
+  Globe,
+  Church,
+  Baby,
+  GraduationCap,
+  Users,
+} from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { useApp } from "@/lib/store";
 import { formatMoney, categories } from "@/lib/mock";
@@ -35,7 +47,11 @@ function AzarFaithDiscover() {
 
   const filteredCampaigns = campaigns.filter((c) => {
     const q = search.toLowerCase();
-    const matchesSearch = !q || c.title.toLowerCase().includes(q) || c.story.toLowerCase().includes(q) || c.location.toLowerCase().includes(q);
+    const matchesSearch =
+      !q ||
+      c.title.toLowerCase().includes(q) ||
+      c.story.toLowerCase().includes(q) ||
+      c.location.toLowerCase().includes(q);
     const matchesTab = tab === "all" || tab === c.mode;
     const matchesCategory = !categoryFilter || c.faithCategory === categoryFilter;
     return matchesSearch && matchesTab && matchesCategory;
@@ -43,13 +59,22 @@ function AzarFaithDiscover() {
 
   const filteredOrgs = orgs.filter((o) => {
     const q = search.toLowerCase();
-    return !q || o.name.toLowerCase().includes(q) || o.location.toLowerCase().includes(q) || o.denomination.toLowerCase().includes(q);
+    return (
+      !q ||
+      o.name.toLowerCase().includes(q) ||
+      o.location.toLowerCase().includes(q) ||
+      o.denomination.toLowerCase().includes(q)
+    );
   });
 
   const tabs: { v: Tab; label: string; count: number }[] = [
     { v: "all", label: "All campaigns", count: campaigns.length },
     { v: "ongoing", label: "Ongoing", count: campaigns.filter((c) => c.mode === "ongoing").length },
-    { v: "one-time", label: "One-time", count: campaigns.filter((c) => c.mode === "one-time").length },
+    {
+      v: "one-time",
+      label: "One-time",
+      count: campaigns.filter((c) => c.mode === "one-time").length,
+    },
     { v: "orgs", label: "Organizations", count: orgs.length },
   ];
 
@@ -60,7 +85,9 @@ function AzarFaithDiscover() {
       <div className="mx-auto max-w-6xl px-5 md:px-8 py-10">
         <div className="mb-8">
           <h1 className="font-display text-3xl md:text-4xl">Discover AzarFaith causes</h1>
-          <p className="text-muted-foreground mt-2">Find missionaries, churches, orphanages, and schools to support.</p>
+          <p className="text-muted-foreground mt-2">
+            Find missionaries, churches, orphanages, and schools to support.
+          </p>
         </div>
 
         {/* Search */}
@@ -83,7 +110,9 @@ function AzarFaithDiscover() {
               className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${tab === v ? "bg-amber-500 text-white" : "bg-muted text-muted-foreground hover:text-foreground"}`}
             >
               {label}
-              <span className={`text-xs px-1.5 py-0.5 rounded-full ${tab === v ? "bg-amber-600 text-white" : "bg-background text-muted-foreground"}`}>
+              <span
+                className={`text-xs px-1.5 py-0.5 rounded-full ${tab === v ? "bg-amber-600 text-white" : "bg-background text-muted-foreground"}`}
+              >
                 {count}
               </span>
             </button>
@@ -124,13 +153,32 @@ function AzarFaithDiscover() {
                 {filteredCampaigns.map((c) => {
                   const pct = c.goal ? Math.min(100, Math.round((c.raised / c.goal) * 100)) : null;
                   return (
-                    <Link key={c.id} to="/campaign/$id" params={{ id: c.id }} className="group block">
+                    <Link
+                      key={c.id}
+                      to="/campaign/$id"
+                      params={{ id: c.id }}
+                      className="group block"
+                    >
                       <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all h-full flex flex-col">
                         <div className="relative aspect-[16/10] overflow-hidden">
-                          <img src={c.cover} alt="" className="w-full h-full object-cover group-hover:scale-[1.02] transition duration-500" />
+                          <img
+                            src={c.cover}
+                            alt=""
+                            className="w-full h-full object-cover group-hover:scale-[1.02] transition duration-500"
+                          />
                           <div className="absolute top-3 left-3 flex gap-1.5">
-                            <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full ${c.mode === "ongoing" ? "bg-amber-100 text-amber-700" : "bg-card/90 text-foreground border border-border"}`}>
-                              {c.mode === "ongoing" ? <><Repeat2 className="w-3 h-3" /> Ongoing</> : <><Target className="w-3 h-3" /> One-time</>}
+                            <span
+                              className={`inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full ${c.mode === "ongoing" ? "bg-amber-100 text-amber-700" : "bg-card/90 text-foreground border border-border"}`}
+                            >
+                              {c.mode === "ongoing" ? (
+                                <>
+                                  <Repeat2 className="w-3 h-3" /> Ongoing
+                                </>
+                              ) : (
+                                <>
+                                  <Target className="w-3 h-3" /> One-time
+                                </>
+                              )}
                             </span>
                             {c.verificationStatus === "verified" && (
                               <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full bg-trust text-trust-foreground">
@@ -145,10 +193,18 @@ function AzarFaithDiscover() {
                           </div>
                         </div>
                         <div className="p-4 flex flex-col flex-1">
-                          <p className="text-xs text-amber-600 font-medium mb-1">{c.faithCategory}</p>
-                          <h3 className="font-display text-[16px] leading-snug line-clamp-2 flex-1">{c.title}</h3>
+                          <p className="text-xs text-amber-600 font-medium mb-1">
+                            {c.faithCategory}
+                          </p>
+                          <h3 className="font-display text-[16px] leading-snug line-clamp-2 flex-1">
+                            {c.title}
+                          </h3>
                           <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-                            <img src={c.raiser.avatar} alt="" className="w-4 h-4 rounded-full object-cover" />
+                            <img
+                              src={c.raiser.avatar}
+                              alt=""
+                              className="w-4 h-4 rounded-full object-cover"
+                            />
                             <span className="truncate">{c.raiser.name}</span>
                             <span>·</span>
                             <MapPin className="w-3 h-3" />
@@ -158,18 +214,29 @@ function AzarFaithDiscover() {
                             {pct !== null ? (
                               <>
                                 <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-                                  <div className="h-full bg-amber-500 rounded-full" style={{ width: `${pct}%` }} />
+                                  <div
+                                    className="h-full bg-amber-500 rounded-full"
+                                    style={{ width: `${pct}%` }}
+                                  />
                                 </div>
                                 <div className="mt-1.5 flex items-baseline justify-between text-xs">
-                                  <span className="font-display text-sm">{formatMoney(c.raised)}</span>
-                                  <span className="text-muted-foreground">{pct}% · {c.donors} donors</span>
+                                  <span className="font-display text-sm">
+                                    {formatMoney(c.raised)}
+                                  </span>
+                                  <span className="text-muted-foreground">
+                                    {pct}% · {c.donors} donors
+                                  </span>
                                 </div>
                               </>
                             ) : (
                               <div className="flex items-center justify-between text-xs">
-                                <span className="text-muted-foreground">{c.donors.toLocaleString()} supporters</span>
+                                <span className="text-muted-foreground">
+                                  {c.donors.toLocaleString()} supporters
+                                </span>
                                 {c.frequencies && (
-                                  <span className="text-amber-600 font-medium">{c.frequencies.slice(0, 2).join(" · ")}</span>
+                                  <span className="text-amber-600 font-medium">
+                                    {c.frequencies.slice(0, 2).join(" · ")}
+                                  </span>
                                 )}
                               </div>
                             )}
@@ -198,7 +265,14 @@ function AzarFaithDiscover() {
                   <Link key={org.id} to="/org/$id" params={{ id: org.id }} className="group block">
                     <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all">
                       <div className="aspect-[16/9] overflow-hidden">
-                        <img src={org.photos[0] ?? "https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80"} alt="" className="w-full h-full object-cover group-hover:scale-[1.02] transition duration-500" />
+                        <img
+                          src={
+                            org.photos[0] ??
+                            "https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80"
+                          }
+                          alt=""
+                          className="w-full h-full object-cover group-hover:scale-[1.02] transition duration-500"
+                        />
                       </div>
                       <div className="p-4">
                         <div className="flex items-center justify-between mb-2">
@@ -212,13 +286,25 @@ function AzarFaithDiscover() {
                           )}
                         </div>
                         <h3 className="font-display text-lg leading-snug">{org.name}</h3>
-                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{org.tagline}</p>
+                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                          {org.tagline}
+                        </p>
                         <div className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
                           <MapPin className="w-3 h-3" /> {org.location}
                         </div>
                         <div className="mt-3 flex items-center gap-4 text-xs">
-                          <span><span className="font-semibold text-foreground">{formatMoney(org.totalReceived)}</span> <span className="text-muted-foreground">received</span></span>
-                          <span><span className="font-semibold text-foreground">{org.supporters.toLocaleString()}</span> <span className="text-muted-foreground">supporters</span></span>
+                          <span>
+                            <span className="font-semibold text-foreground">
+                              {formatMoney(org.totalReceived)}
+                            </span>{" "}
+                            <span className="text-muted-foreground">received</span>
+                          </span>
+                          <span>
+                            <span className="font-semibold text-foreground">
+                              {org.supporters.toLocaleString()}
+                            </span>{" "}
+                            <span className="text-muted-foreground">supporters</span>
+                          </span>
                         </div>
                       </div>
                     </article>

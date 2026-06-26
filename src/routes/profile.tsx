@@ -19,7 +19,9 @@ function Profile() {
           <img src={me.avatar} alt="" className="w-16 h-16 rounded-2xl object-cover" />
           <div>
             <h1 className="font-display text-2xl tracking-tight">{me.name}</h1>
-            <p className="text-sm text-muted-foreground">{me.location} · Giving since {me.joined}</p>
+            <p className="text-sm text-muted-foreground">
+              {me.location} · Giving since {me.joined}
+            </p>
           </div>
         </div>
 
@@ -38,7 +40,10 @@ function Profile() {
           <h2 className="text-sm font-medium text-muted-foreground mb-3">Verifications</h2>
           <div className="flex flex-wrap gap-2">
             {me.verifications.map((v) => (
-              <span key={v} className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-amber-50 text-amber-700">
+              <span
+                key={v}
+                className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-amber-50 text-amber-700"
+              >
                 <ShieldCheck className="w-3.5 h-3.5" /> {v}
               </span>
             ))}

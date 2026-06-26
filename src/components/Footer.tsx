@@ -13,26 +13,71 @@ export function Footer() {
               </div>
               <span className="font-display text-xl tracking-tight">AzarFaith</span>
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">Faith-based giving for Nigeria. Verified churches, missionaries, and ministries.</p>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              Faith-based giving for Nigeria. Verified churches, missionaries, and ministries.
+            </p>
             <div className="mt-5 flex gap-3">
-              <a href="#" className="w-9 h-9 rounded-lg bg-muted grid place-items-center text-muted-foreground hover:text-foreground hover:bg-accent transition" aria-label="Twitter"><Globe className="w-4 h-4" /></a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-muted grid place-items-center text-muted-foreground hover:text-foreground hover:bg-accent transition" aria-label="Instagram"><Globe className="w-4 h-4" /></a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-lg bg-muted grid place-items-center text-muted-foreground hover:text-foreground hover:bg-accent transition"
+                aria-label="Twitter"
+              >
+                <Globe className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-lg bg-muted grid place-items-center text-muted-foreground hover:text-foreground hover:bg-accent transition"
+                aria-label="Instagram"
+              >
+                <Globe className="w-4 h-4" />
+              </a>
             </div>
           </div>
-          <FooterCol title="Platform" links={[{ label: "Discover causes", to: "/discover" }, { label: "Start a campaign", to: "/create" }, { label: "Register your org", to: "/register-org" }]} />
-          <FooterCol title="Account" links={[{ label: "My giving", to: "/my-giving" }, { label: "Profile", to: "/profile" }, { label: "Log in", to: "/login" }]} />
-          <FooterCol title="Trust" links={[{ label: "Verified orgs only", href: "#" }, { label: "Report a cause", href: "#" }]} />
+          <FooterCol
+            title="Platform"
+            links={[
+              { label: "Discover causes", to: "/discover" },
+              { label: "Start a campaign", to: "/create" },
+              { label: "Register your org", to: "/register-org" },
+            ]}
+          />
+          <FooterCol
+            title="Account"
+            links={[
+              { label: "My giving", to: "/my-giving" },
+              { label: "Profile", to: "/profile" },
+              { label: "Log in", to: "/login" },
+            ]}
+          />
+          <FooterCol
+            title="Trust"
+            links={[
+              { label: "Verified orgs only", href: "#" },
+              { label: "Report a cause", href: "#" },
+            ]}
+          />
         </div>
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">&copy; 2026 AzarFaith. All rights reserved.</p>
-          <p className="text-xs text-muted-foreground">Built with <Flame className="w-3 h-3 inline fill-amber-500 text-amber-500" /> for Nigeria</p>
+          <p className="text-sm text-muted-foreground">
+            &copy; 2026 AzarFaith. All rights reserved.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Built with <Flame className="w-3 h-3 inline fill-amber-500 text-amber-500" /> for
+            Nigeria
+          </p>
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: { label: string; to?: string; href?: string }[] }) {
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; to?: string; href?: string }[];
+}) {
   return (
     <div>
       <h4 className="font-display text-sm font-semibold mb-4">{title}</h4>
@@ -40,9 +85,19 @@ function FooterCol({ title, links }: { title: string; links: { label: string; to
         {links.map((link) => (
           <li key={link.label}>
             {link.to ? (
-              <Link to={link.to as any} className="text-sm text-muted-foreground hover:text-foreground transition">{link.label}</Link>
+              <Link
+                to={link.to}
+                className="text-sm text-muted-foreground hover:text-foreground transition"
+              >
+                {link.label}
+              </Link>
             ) : (
-              <a href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition">{link.label}</a>
+              <a
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition"
+              >
+                {link.label}
+              </a>
             )}
           </li>
         ))}

@@ -71,7 +71,10 @@ export const useApp = create<State>((set) => ({
               ...c,
               raised: c.raised + amount,
               donors: c.donors + 1,
-              donations: [{ id: Math.random().toString(36).slice(2), donor, amount, date: "just now", note }, ...c.donations],
+              donations: [
+                { id: Math.random().toString(36).slice(2), donor, amount, date: "just now", note },
+                ...c.donations,
+              ],
             }
           : c,
       ),
@@ -90,6 +93,8 @@ export const useApp = create<State>((set) => ({
   addRecurringDonation: (r) => set((s) => ({ recurringDonations: [r, ...s.recurringDonations] })),
   cancelRecurringDonation: (id) =>
     set((s) => ({
-      recurringDonations: s.recurringDonations.map((r) => (r.id === id ? { ...r, active: false } : r)),
+      recurringDonations: s.recurringDonations.map((r) =>
+        r.id === id ? { ...r, active: false } : r,
+      ),
     })),
 }));

@@ -22,11 +22,36 @@ export const Route = createFileRoute("/create")({
 });
 
 const campaignTypes = [
-  { v: "money", icon: Banknote, label: "Raise funds", desc: "Money for a specific need or ongoing ministry" },
-  { v: "item", icon: Gift, label: "Request items", desc: "Beds, bibles, equipment, school materials…" },
-  { v: "volunteer", icon: Users, label: "Find volunteers", desc: "Hands to help, teachers, builders, drivers…" },
-  { v: "professional", icon: Briefcase, label: "Professional help", desc: "Lawyers, accountants, engineers, doctors…" },
-  { v: "emergency", icon: Siren, label: "Emergency", desc: "Urgent crisis needing immediate response" },
+  {
+    v: "money",
+    icon: Banknote,
+    label: "Raise funds",
+    desc: "Money for a specific need or ongoing ministry",
+  },
+  {
+    v: "item",
+    icon: Gift,
+    label: "Request items",
+    desc: "Beds, bibles, equipment, school materials…",
+  },
+  {
+    v: "volunteer",
+    icon: Users,
+    label: "Find volunteers",
+    desc: "Hands to help, teachers, builders, drivers…",
+  },
+  {
+    v: "professional",
+    icon: Briefcase,
+    label: "Professional help",
+    desc: "Lawyers, accountants, engineers, doctors…",
+  },
+  {
+    v: "emergency",
+    icon: Siren,
+    label: "Emergency",
+    desc: "Urgent crisis needing immediate response",
+  },
 ] as const;
 
 const urgencyOptions = [
@@ -59,13 +84,16 @@ function AzarFaithCreate() {
     if (step === 0 && !draft.mode) e.mode = "Choose a campaign mode";
     if (step === 1 && !draft.type) e.type = "Choose a type";
     if (step === 2) {
-      if (!draft.title?.trim() || draft.title.length < 8) e.title = "Title must be at least 8 characters";
-      if (!draft.story?.trim() || draft.story.length < 30) e.story = "Story must be at least 30 characters";
+      if (!draft.title?.trim() || draft.title.length < 8)
+        e.title = "Title must be at least 8 characters";
+      if (!draft.story?.trim() || draft.story.length < 30)
+        e.story = "Story must be at least 30 characters";
     }
     if (step === 3) {
       if (!draft.faithCategory) e.faithCategory = "Select a category";
       if (!draft.location?.trim()) e.location = "Location is required";
-      if (!isOngoing && draft.type === "money" && (!draft.goal || draft.goal < 1000)) e.goal = "Goal must be at least ₦1,000";
+      if (!isOngoing && draft.type === "money" && (!draft.goal || draft.goal < 1000))
+        e.goal = "Goal must be at least ₦1,000";
     }
     if (step === 4 && isOngoing) {
       if (!draft.frequencies?.length) e.frequencies = "Select at least one giving frequency";
@@ -90,8 +118,16 @@ function AzarFaithCreate() {
         story: draft.story!,
         faithCategory: draft.faithCategory!,
         orgId: draft.orgId,
-        raiser: { name: "Tunde Adebayo", avatar: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=200&q=80", location: draft.location!, trustScore: 86 },
-        cover: draft.cover ?? "https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80",
+        raiser: {
+          name: "Tunde Adebayo",
+          avatar:
+            "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=200&q=80",
+          location: draft.location!,
+          trustScore: 86,
+        },
+        cover:
+          draft.cover ??
+          "https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1200&q=80",
         gallery: [],
         goal: isOngoing ? undefined : draft.goal,
         raised: 0,
@@ -124,11 +160,19 @@ function AzarFaithCreate() {
         <div className="flex items-center gap-2 mb-8">
           {stepLabels.map((label, i) => (
             <div key={label} className="flex items-center gap-2 flex-1 last:flex-none">
-              <div className={`w-7 h-7 rounded-full text-xs font-semibold grid place-items-center shrink-0 ${i < step ? "bg-amber-500 text-white" : i === step ? "bg-amber-500 text-white" : "bg-muted text-muted-foreground"}`}>
+              <div
+                className={`w-7 h-7 rounded-full text-xs font-semibold grid place-items-center shrink-0 ${i < step ? "bg-amber-500 text-white" : i === step ? "bg-amber-500 text-white" : "bg-muted text-muted-foreground"}`}
+              >
                 {i < step ? <Check className="w-3.5 h-3.5" /> : i + 1}
               </div>
-              <span className={`text-xs hidden sm:block ${i === step ? "text-foreground font-medium" : "text-muted-foreground"}`}>{label}</span>
-              {i < totalSteps - 1 && <div className={`h-px flex-1 ${i < step ? "bg-amber-400" : "bg-border"}`} />}
+              <span
+                className={`text-xs hidden sm:block ${i === step ? "text-foreground font-medium" : "text-muted-foreground"}`}
+              >
+                {label}
+              </span>
+              {i < totalSteps - 1 && (
+                <div className={`h-px flex-1 ${i < step ? "bg-amber-400" : "bg-border"}`} />
+              )}
             </div>
           ))}
         </div>
@@ -138,7 +182,9 @@ function AzarFaithCreate() {
           <div className="space-y-5">
             <div>
               <h1 className="font-display text-2xl">What kind of campaign?</h1>
-              <p className="text-muted-foreground text-sm mt-1">Choose based on what your cause actually needs.</p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Choose based on what your cause actually needs.
+              </p>
             </div>
             <div className="grid gap-3">
               <button
@@ -146,15 +192,22 @@ function AzarFaithCreate() {
                 onClick={() => setDraft({ mode: "one-time" })}
                 className={`flex items-start gap-4 p-5 rounded-2xl border text-left transition ${draft.mode === "one-time" ? "border-amber-400 bg-amber-50" : "border-border hover:border-amber-200"}`}
               >
-                <div className={`w-10 h-10 rounded-xl grid place-items-center shrink-0 mt-0.5 ${draft.mode === "one-time" ? "bg-amber-200" : "bg-muted"}`}>
-                  <Target className={`w-5 h-5 ${draft.mode === "one-time" ? "text-amber-700" : "text-muted-foreground"}`} />
+                <div
+                  className={`w-10 h-10 rounded-xl grid place-items-center shrink-0 mt-0.5 ${draft.mode === "one-time" ? "bg-amber-200" : "bg-muted"}`}
+                >
+                  <Target
+                    className={`w-5 h-5 ${draft.mode === "one-time" ? "text-amber-700" : "text-muted-foreground"}`}
+                  />
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-sm flex items-center justify-between">
                     One-time campaign
                     {draft.mode === "one-time" && <Check className="w-4 h-4 text-amber-600" />}
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">You have a specific target and a need to close. Building a hall, buying equipment, emergency relief, items needed.</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    You have a specific target and a need to close. Building a hall, buying
+                    equipment, emergency relief, items needed.
+                  </p>
                 </div>
               </button>
               <button
@@ -162,15 +215,22 @@ function AzarFaithCreate() {
                 onClick={() => setDraft({ mode: "ongoing" })}
                 className={`flex items-start gap-4 p-5 rounded-2xl border text-left transition ${draft.mode === "ongoing" ? "border-amber-400 bg-amber-50" : "border-border hover:border-amber-200"}`}
               >
-                <div className={`w-10 h-10 rounded-xl grid place-items-center shrink-0 mt-0.5 ${draft.mode === "ongoing" ? "bg-amber-200" : "bg-muted"}`}>
-                  <Repeat2 className={`w-5 h-5 ${draft.mode === "ongoing" ? "text-amber-700" : "text-muted-foreground"}`} />
+                <div
+                  className={`w-10 h-10 rounded-xl grid place-items-center shrink-0 mt-0.5 ${draft.mode === "ongoing" ? "bg-amber-200" : "bg-muted"}`}
+                >
+                  <Repeat2
+                    className={`w-5 h-5 ${draft.mode === "ongoing" ? "text-amber-700" : "text-muted-foreground"}`}
+                  />
                 </div>
                 <div className="flex-1">
                   <div className="font-semibold text-sm flex items-center justify-between">
                     Ongoing support
                     {draft.mode === "ongoing" && <Check className="w-4 h-4 text-amber-600" />}
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">No specific target. Your ministry is continuous — you just need a faithful community giving weekly, monthly, or quarterly.</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    No specific target. Your ministry is continuous — you just need a faithful
+                    community giving weekly, monthly, or quarterly.
+                  </p>
                 </div>
               </button>
             </div>
@@ -183,7 +243,9 @@ function AzarFaithCreate() {
           <div className="space-y-5">
             <div>
               <h1 className="font-display text-2xl">What are you asking for?</h1>
-              <p className="text-muted-foreground text-sm mt-1">Even ongoing ministries can request more than just money.</p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Even ongoing ministries can request more than just money.
+              </p>
             </div>
             <div className="space-y-2">
               {campaignTypes.map(({ v, icon: Icon, label, desc }) => (
@@ -193,8 +255,12 @@ function AzarFaithCreate() {
                   onClick={() => setDraft({ type: v })}
                   className={`w-full flex items-center gap-3 p-3.5 rounded-xl border text-left transition ${draft.type === v ? "border-amber-400 bg-amber-50" : "border-border hover:border-amber-200"}`}
                 >
-                  <div className={`w-9 h-9 rounded-lg grid place-items-center shrink-0 ${draft.type === v ? "bg-amber-100" : "bg-muted"}`}>
-                    <Icon className={`w-4.5 h-4.5 ${draft.type === v ? "text-amber-600" : "text-muted-foreground"}`} />
+                  <div
+                    className={`w-9 h-9 rounded-lg grid place-items-center shrink-0 ${draft.type === v ? "bg-amber-100" : "bg-muted"}`}
+                  >
+                    <Icon
+                      className={`w-4.5 h-4.5 ${draft.type === v ? "text-amber-600" : "text-muted-foreground"}`}
+                    />
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-medium">{label}</div>
@@ -213,13 +279,19 @@ function AzarFaithCreate() {
           <div className="space-y-5">
             <div>
               <h1 className="font-display text-2xl">Tell your story</h1>
-              <p className="text-muted-foreground text-sm mt-1">Be specific. Real details build trust.</p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Be specific. Real details build trust.
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1.5">Campaign title</label>
               <input
                 className="w-full border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 bg-background"
-                placeholder={isOngoing ? "e.g. Support ECWA Missionaries in Borno" : "e.g. Build a church hall for ECWA Kano"}
+                placeholder={
+                  isOngoing
+                    ? "e.g. Support ECWA Missionaries in Borno"
+                    : "e.g. Build a church hall for ECWA Kano"
+                }
                 value={draft.title ?? ""}
                 onChange={(e) => setDraft({ title: e.target.value })}
               />
@@ -241,12 +313,20 @@ function AzarFaithCreate() {
                 onChange={(e) => setDraft({ story: e.target.value })}
               />
               <div className="flex items-center justify-between mt-1">
-                {errors.story ? <p className="text-xs text-destructive">{errors.story}</p> : <span />}
-                <span className="text-xs text-muted-foreground">{draft.story?.length ?? 0} chars</span>
+                {errors.story ? (
+                  <p className="text-xs text-destructive">{errors.story}</p>
+                ) : (
+                  <span />
+                )}
+                <span className="text-xs text-muted-foreground">
+                  {draft.story?.length ?? 0} chars
+                </span>
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1.5">Cover image <span className="text-muted-foreground font-normal">(optional)</span></label>
+              <label className="block text-sm font-medium mb-1.5">
+                Cover image <span className="text-muted-foreground font-normal">(optional)</span>
+              </label>
               <button
                 type="button"
                 onClick={() => toast("Image upload coming soon")}
@@ -254,7 +334,9 @@ function AzarFaithCreate() {
               >
                 <ImagePlus className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm font-medium">Add a cover photo</p>
-                <p className="text-xs text-muted-foreground mt-0.5">A real photo of your work makes a huge difference</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  A real photo of your work makes a huge difference
+                </p>
               </button>
             </div>
           </div>
@@ -280,7 +362,9 @@ function AzarFaithCreate() {
                   </button>
                 ))}
               </div>
-              {errors.faithCategory && <p className="text-xs text-destructive mt-1">{errors.faithCategory}</p>}
+              {errors.faithCategory && (
+                <p className="text-xs text-destructive mt-1">{errors.faithCategory}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium mb-1.5">Location</label>
@@ -290,7 +374,9 @@ function AzarFaithCreate() {
                 value={draft.location ?? ""}
                 onChange={(e) => setDraft({ location: e.target.value })}
               />
-              {errors.location && <p className="text-xs text-destructive mt-1">{errors.location}</p>}
+              {errors.location && (
+                <p className="text-xs text-destructive mt-1">{errors.location}</p>
+              )}
             </div>
             {!isOngoing && draft.type === "money" && (
               <div>
@@ -324,7 +410,9 @@ function AzarFaithCreate() {
               </div>
             )}
             <div>
-              <label className="block text-sm font-medium mb-1.5">Link to an org <span className="text-muted-foreground font-normal">(optional)</span></label>
+              <label className="block text-sm font-medium mb-1.5">
+                Link to an org <span className="text-muted-foreground font-normal">(optional)</span>
+              </label>
               <select
                 className="w-full border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 bg-background"
                 value={draft.orgId ?? ""}
@@ -332,7 +420,9 @@ function AzarFaithCreate() {
               >
                 <option value="">No org — individual campaign</option>
                 {orgs.map((o) => (
-                  <option key={o.id} value={o.id}>{o.name}</option>
+                  <option key={o.id} value={o.id}>
+                    {o.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -344,7 +434,9 @@ function AzarFaithCreate() {
           <div className="space-y-5">
             <div>
               <h1 className="font-display text-2xl">Giving frequencies</h1>
-              <p className="text-muted-foreground text-sm mt-1">Which frequencies do you want donors to be able to give at?</p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Which frequencies do you want donors to be able to give at?
+              </p>
             </div>
             <div className="space-y-3">
               {frequencyOptions.map(({ v, label }) => {
@@ -356,15 +448,15 @@ function AzarFaithCreate() {
                     onClick={() => {
                       const current = draft.frequencies ?? [];
                       setDraft({
-                        frequencies: selected
-                          ? current.filter((f) => f !== v)
-                          : [...current, v],
+                        frequencies: selected ? current.filter((f) => f !== v) : [...current, v],
                       });
                     }}
                     className={`w-full flex items-center justify-between p-4 rounded-xl border transition ${selected ? "border-amber-400 bg-amber-50" : "border-border hover:border-amber-200"}`}
                   >
                     <div className="flex items-center gap-3">
-                      <Repeat2 className={`w-4 h-4 ${selected ? "text-amber-600" : "text-muted-foreground"}`} />
+                      <Repeat2
+                        className={`w-4 h-4 ${selected ? "text-amber-600" : "text-muted-foreground"}`}
+                      />
                       <span className="text-sm font-medium">{label}</span>
                     </div>
                     {selected && <Check className="w-4 h-4 text-amber-600" />}
@@ -373,7 +465,10 @@ function AzarFaithCreate() {
               })}
             </div>
             {errors.frequencies && <p className="text-xs text-destructive">{errors.frequencies}</p>}
-            <p className="text-xs text-muted-foreground">Donors can choose their preferred frequency when they give. Selecting all three gives donors maximum flexibility.</p>
+            <p className="text-xs text-muted-foreground">
+              Donors can choose their preferred frequency when they give. Selecting all three gives
+              donors maximum flexibility.
+            </p>
           </div>
         )}
 
@@ -382,7 +477,9 @@ function AzarFaithCreate() {
           <div className="space-y-5">
             <div>
               <h1 className="font-display text-2xl">Preview &amp; publish</h1>
-              <p className="text-muted-foreground text-sm mt-1">Your campaign goes live immediately.</p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Your campaign goes live immediately.
+              </p>
             </div>
             <div className="bg-card border border-border rounded-2xl overflow-hidden">
               <div className="aspect-[16/9] bg-muted flex items-center justify-center">
@@ -394,11 +491,15 @@ function AzarFaithCreate() {
               </div>
               <div className="p-5 space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${isOngoing ? "bg-amber-100 text-amber-700" : "bg-muted text-foreground"}`}>
+                  <span
+                    className={`text-xs px-2.5 py-1 rounded-full font-medium ${isOngoing ? "bg-amber-100 text-amber-700" : "bg-muted text-foreground"}`}
+                  >
                     {isOngoing ? "Ongoing" : "One-time"}
                   </span>
                   {draft.faithCategory && (
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-muted text-foreground">{draft.faithCategory}</span>
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-muted text-foreground">
+                      {draft.faithCategory}
+                    </span>
                   )}
                 </div>
                 <h2 className="font-display text-xl">{draft.title}</h2>
@@ -408,21 +509,28 @@ function AzarFaithCreate() {
                     <div className="h-1.5 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-amber-500 rounded-full w-0" />
                     </div>
-                    <div className="mt-1.5 text-sm">Goal: <span className="font-semibold">₦{draft.goal.toLocaleString()}</span></div>
+                    <div className="mt-1.5 text-sm">
+                      Goal: <span className="font-semibold">₦{draft.goal.toLocaleString()}</span>
+                    </div>
                   </div>
                 )}
                 {isOngoing && draft.frequencies && (
-                  <div className="text-xs text-muted-foreground">Give: {draft.frequencies.join(" · ")}</div>
+                  <div className="text-xs text-muted-foreground">
+                    Give: {draft.frequencies.join(" · ")}
+                  </div>
                 )}
               </div>
             </div>
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-sm text-amber-800">
-              Your campaign goes live with an <strong>unverified</strong> badge. You can request verification from the campaign page after publishing.
+              Your campaign goes live with an <strong>unverified</strong> badge. You can request
+              verification from the campaign page after publishing.
             </div>
             {draft.type === "emergency" && (
               <div className="flex items-center gap-2 p-3 rounded-xl bg-urgent/10 border border-urgent/20 text-sm">
                 <Flame className="w-4 h-4 text-urgent shrink-0" />
-                <span>This will be marked as an emergency campaign and shown with an urgent badge.</span>
+                <span>
+                  This will be marked as an emergency campaign and shown with an urgent badge.
+                </span>
               </div>
             )}
           </div>
@@ -431,14 +539,20 @@ function AzarFaithCreate() {
         {/* Navigation */}
         <div className="mt-8 flex items-center justify-between">
           {step > 0 ? (
-            <button onClick={() => setStep((s) => s - 1)} className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition">
+            <button
+              onClick={() => setStep((s) => s - 1)}
+              className="px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:bg-muted transition"
+            >
               Back
             </button>
           ) : (
             <span />
           )}
-          {((isOngoing && step < 5) || (!isOngoing && step < 4)) ? (
-            <button onClick={next} className="px-7 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm hover:bg-amber-600 transition">
+          {(isOngoing && step < 5) || (!isOngoing && step < 4) ? (
+            <button
+              onClick={next}
+              className="px-7 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm hover:bg-amber-600 transition"
+            >
               Continue
             </button>
           ) : (

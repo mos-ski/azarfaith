@@ -74,15 +74,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "AzarFaith" },
-      { name: "description", content: "AzarFaith connects donors to churches, missionaries, orphanages, and faith-based schools across Nigeria." },
+      {
+        name: "description",
+        content:
+          "AzarFaith connects donors to churches, missionaries, orphanages, and faith-based schools across Nigeria.",
+      },
       { name: "author", content: "AzarFaith" },
       { property: "og:title", content: "AzarFaith" },
-      { property: "og:description", content: "AzarFaith connects donors to churches, missionaries, orphanages, and faith-based schools across Nigeria." },
+      {
+        property: "og:description",
+        content:
+          "AzarFaith connects donors to churches, missionaries, orphanages, and faith-based schools across Nigeria.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@AzarFaith" },
       { name: "twitter:title", content: "AzarFaith" },
-      { name: "twitter:description", content: "AzarFaith connects donors to churches, missionaries, orphanages, and faith-based schools across Nigeria." },
+      {
+        name: "twitter:description",
+        content:
+          "AzarFaith connects donors to churches, missionaries, orphanages, and faith-based schools across Nigeria.",
+      },
     ],
     links: [
       {

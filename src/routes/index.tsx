@@ -23,7 +23,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "AzarFaith — Give to those doing God's work in Nigeria" },
-      { name: "description", content: "Support churches, missionaries, orphanages and faith-based schools in Nigeria. Give once or set up a standing order." },
+      {
+        name: "description",
+        content:
+          "Support churches, missionaries, orphanages and faith-based schools in Nigeria. Give once or set up a standing order.",
+      },
     ],
   }),
   component: AzarFaithLanding,
@@ -65,11 +69,11 @@ function AzarFaithLanding() {
               <Flame className="w-3.5 h-3.5" /> Faith-based giving for Nigeria
             </div>
             <h1 className="font-display text-4xl md:text-6xl leading-[1.1] tracking-tight">
-              Give to those doing{" "}
-              <span className="text-amber-500">God's work</span>
+              Give to those doing <span className="text-amber-500">God's work</span>
             </h1>
             <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Support churches, missionaries, orphanages, and faith-based schools across Nigeria. Give once for a specific need, or set up a standing order to sustain ongoing work.
+              Support churches, missionaries, orphanages, and faith-based schools across Nigeria.
+              Give once for a specific need, or set up a standing order to sustain ongoing work.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -86,9 +90,15 @@ function AzarFaithLanding() {
               </Link>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-amber-500" /> All church sizes welcome</span>
-              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-amber-500" /> Transparent giving</span>
-              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-amber-500" /> Recurring support</span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-amber-500" /> All church sizes welcome
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-amber-500" /> Transparent giving
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-amber-500" /> Recurring support
+              </span>
             </div>
           </div>
         </div>
@@ -98,7 +108,9 @@ function AzarFaithLanding() {
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 md:py-20">
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl md:text-4xl">Two ways to give</h2>
-          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">Not every cause has a target. Some need a one-time push. Others need you every month.</p>
+          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
+            Not every cause has a target. Some need a one-time push. Others need you every month.
+          </p>
         </div>
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           <div className="bg-card border border-border rounded-3xl p-8">
@@ -106,7 +118,10 @@ function AzarFaithLanding() {
               <Target className="w-6 h-6 text-amber-600" />
             </div>
             <h3 className="font-display text-xl">One-time campaigns</h3>
-            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">A church needs to build. An orphanage needs beds. A displaced community needs emergency food. There's a target and a deadline — your gift closes the gap.</p>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              A church needs to build. An orphanage needs beds. A displaced community needs
+              emergency food. There's a target and a deadline — your gift closes the gap.
+            </p>
             <Link
               to="/discover"
               className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition"
@@ -119,7 +134,11 @@ function AzarFaithLanding() {
               <Repeat2 className="w-6 h-6 text-amber-600" />
             </div>
             <h3 className="font-display text-xl">Ongoing support</h3>
-            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">A missionary going to Borno every month doesn't need a campaign — they need a faithful community. Set up a weekly, monthly, or quarterly standing order for work that never stops.</p>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              A missionary going to Borno every month doesn't need a campaign — they need a faithful
+              community. Set up a weekly, monthly, or quarterly standing order for work that never
+              stops.
+            </p>
             <Link
               to="/discover"
               className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition"
@@ -138,7 +157,10 @@ function AzarFaithLanding() {
               <h2 className="font-display text-3xl md:text-4xl">Organizations on AzarFaith</h2>
               <p className="mt-2 text-muted-foreground">Vetted, transparent, doing the work.</p>
             </div>
-            <Link to="/discover" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition">
+            <Link
+              to="/discover"
+              className="hidden md:flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition"
+            >
               See all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -147,7 +169,11 @@ function AzarFaithLanding() {
               <Link key={org.id} to="/org/$id" params={{ id: org.id }} className="group block">
                 <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all">
                   <div className="aspect-[16/9] overflow-hidden">
-                    <img src={org.photos[0]} alt="" className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500" />
+                    <img
+                      src={org.photos[0]}
+                      alt=""
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500"
+                    />
                   </div>
                   <div className="p-5">
                     <div className="flex items-center justify-between mb-3">
@@ -166,8 +192,18 @@ function AzarFaithLanding() {
                       <MapPin className="w-3 h-3" /> {org.location}
                     </div>
                     <div className="mt-4 flex items-center gap-4 text-xs">
-                      <span><span className="font-semibold text-foreground">{formatMoney(org.totalReceived)}</span> <span className="text-muted-foreground">received</span></span>
-                      <span><span className="font-semibold text-foreground">{org.supporters.toLocaleString()}</span> <span className="text-muted-foreground">supporters</span></span>
+                      <span>
+                        <span className="font-semibold text-foreground">
+                          {formatMoney(org.totalReceived)}
+                        </span>{" "}
+                        <span className="text-muted-foreground">received</span>
+                      </span>
+                      <span>
+                        <span className="font-semibold text-foreground">
+                          {org.supporters.toLocaleString()}
+                        </span>{" "}
+                        <span className="text-muted-foreground">supporters</span>
+                      </span>
                     </div>
                   </div>
                 </article>
@@ -185,9 +221,14 @@ function AzarFaithLanding() {
               <Repeat2 className="w-3.5 h-3.5" /> Ongoing support
             </div>
             <h2 className="font-display text-3xl md:text-4xl">Give every month</h2>
-            <p className="mt-2 text-muted-foreground">These causes don't have a finish line. They just need you.</p>
+            <p className="mt-2 text-muted-foreground">
+              These causes don't have a finish line. They just need you.
+            </p>
           </div>
-          <Link to="/discover" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition">
+          <Link
+            to="/discover"
+            className="hidden md:flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition"
+          >
             See all <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -196,7 +237,11 @@ function AzarFaithLanding() {
             <Link key={c.id} to="/campaign/$id" params={{ id: c.id }} className="group block">
               <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all flex gap-0 md:gap-5 flex-col md:flex-row">
                 <div className="md:w-48 aspect-[16/10] md:aspect-auto overflow-hidden shrink-0">
-                  <img src={c.cover} alt="" className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500" />
+                  <img
+                    src={c.cover}
+                    alt=""
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500"
+                  />
                 </div>
                 <div className="p-5 flex flex-col justify-between">
                   <div>
@@ -214,7 +259,9 @@ function AzarFaithLanding() {
                     <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">{c.story}</p>
                   </div>
                   <div className="mt-4 flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">{c.donors.toLocaleString()} supporters</span>
+                    <span className="text-muted-foreground">
+                      {c.donors.toLocaleString()} supporters
+                    </span>
                     <span className="font-medium text-amber-600">Give monthly</span>
                   </div>
                 </div>
@@ -233,9 +280,14 @@ function AzarFaithLanding() {
                 <Target className="w-3.5 h-3.5" /> One-time campaigns
               </div>
               <h2 className="font-display text-3xl md:text-4xl">Help close the gap</h2>
-              <p className="mt-2 text-muted-foreground">Specific needs with a target. Every naira brings them closer.</p>
+              <p className="mt-2 text-muted-foreground">
+                Specific needs with a target. Every naira brings them closer.
+              </p>
             </div>
-            <Link to="/discover" className="hidden md:flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition">
+            <Link
+              to="/discover"
+              className="hidden md:flex items-center gap-1.5 text-sm font-medium text-amber-600 hover:text-amber-700 transition"
+            >
               See all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -246,7 +298,11 @@ function AzarFaithLanding() {
                 <Link key={c.id} to="/campaign/$id" params={{ id: c.id }} className="group block">
                   <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all">
                     <div className="aspect-[16/9] overflow-hidden relative">
-                      <img src={c.cover} alt="" className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500" />
+                      <img
+                        src={c.cover}
+                        alt=""
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500"
+                      />
                       {c.urgency === "critical" && (
                         <span className="absolute top-3 left-3 inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-urgent text-urgent-foreground">
                           <Flame className="w-3 h-3" /> Urgent
@@ -257,11 +313,16 @@ function AzarFaithLanding() {
                       <h3 className="font-display text-lg leading-snug line-clamp-2">{c.title}</h3>
                       <div className="mt-4">
                         <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-                          <div className="h-full bg-amber-500 rounded-full transition-all" style={{ width: `${pct}%` }} />
+                          <div
+                            className="h-full bg-amber-500 rounded-full transition-all"
+                            style={{ width: `${pct}%` }}
+                          />
                         </div>
                         <div className="mt-2 flex items-baseline justify-between text-sm">
                           <span className="font-display">{formatMoney(c.raised)}</span>
-                          <span className="text-xs text-muted-foreground">of {formatMoney(c.goal ?? 0)} · {pct}%</span>
+                          <span className="text-xs text-muted-foreground">
+                            of {formatMoney(c.goal ?? 0)} · {pct}%
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -277,17 +338,37 @@ function AzarFaithLanding() {
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 md:py-20">
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl md:text-4xl">Who AzarFaith is for</h2>
-          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">Not the big names. The ones in the villages, under bridges, and in the bush.</p>
+          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
+            Not the big names. The ones in the villages, under bridges, and in the bush.
+          </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { icon: <Globe className="w-7 h-7 text-amber-500" />, label: "Missionaries", desc: "Reaching unreached communities across Nigeria" },
-            { icon: <Church className="w-7 h-7 text-amber-500" />, label: "Core churches", desc: "Not Covenant Nation. The ones meeting under zinc roofs" },
-            { icon: <Baby className="w-7 h-7 text-amber-500" />, label: "Orphanages", desc: "Faith-based homes caring for displaced children" },
-            { icon: <GraduationCap className="w-7 h-7 text-amber-500" />, label: "Faith schools", desc: "Affordable Christian education in underserved areas" },
+            {
+              icon: <Globe className="w-7 h-7 text-amber-500" />,
+              label: "Missionaries",
+              desc: "Reaching unreached communities across Nigeria",
+            },
+            {
+              icon: <Church className="w-7 h-7 text-amber-500" />,
+              label: "Core churches",
+              desc: "Not Covenant Nation. The ones meeting under zinc roofs",
+            },
+            {
+              icon: <Baby className="w-7 h-7 text-amber-500" />,
+              label: "Orphanages",
+              desc: "Faith-based homes caring for displaced children",
+            },
+            {
+              icon: <GraduationCap className="w-7 h-7 text-amber-500" />,
+              label: "Faith schools",
+              desc: "Affordable Christian education in underserved areas",
+            },
           ].map(({ icon, label, desc }) => (
             <div key={label} className="bg-card border border-border rounded-2xl p-5 text-center">
-              <div className="w-14 h-14 rounded-2xl bg-amber-50 grid place-items-center mx-auto mb-4">{icon}</div>
+              <div className="w-14 h-14 rounded-2xl bg-amber-50 grid place-items-center mx-auto mb-4">
+                {icon}
+              </div>
               <div className="font-semibold text-sm">{label}</div>
               <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
             </div>
@@ -301,13 +382,29 @@ function AzarFaithLanding() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display text-3xl md:text-4xl">How we keep it honest</h2>
-              <p className="mt-4 text-muted-foreground leading-relaxed">AzarFaith is built on verified trust infrastructure. Orgs provide documentation, post regular updates, and are subject to community reporting. No private donations — everything goes through the platform.</p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                AzarFaith is built on verified trust infrastructure. Orgs provide documentation,
+                post regular updates, and are subject to community reporting. No private donations —
+                everything goes through the platform.
+              </p>
               <div className="mt-8 space-y-4">
                 {[
-                  { icon: <ShieldCheck className="w-4 h-4 text-amber-600" />, text: "Org profiles with real photos and verified denominations" },
-                  { icon: <Heart className="w-4 h-4 text-amber-600" />, text: "Regular update posts — you see how your money is used" },
-                  { icon: <CheckCircle className="w-4 h-4 text-amber-600" />, text: "2.5% platform fee — the rest goes to the cause" },
-                  { icon: <Users className="w-4 h-4 text-amber-600" />, text: "Community can flag orgs — admin reviews within 24 hours" },
+                  {
+                    icon: <ShieldCheck className="w-4 h-4 text-amber-600" />,
+                    text: "Org profiles with real photos and verified denominations",
+                  },
+                  {
+                    icon: <Heart className="w-4 h-4 text-amber-600" />,
+                    text: "Regular update posts — you see how your money is used",
+                  },
+                  {
+                    icon: <CheckCircle className="w-4 h-4 text-amber-600" />,
+                    text: "2.5% platform fee — the rest goes to the cause",
+                  },
+                  {
+                    icon: <Users className="w-4 h-4 text-amber-600" />,
+                    text: "Community can flag orgs — admin reviews within 24 hours",
+                  },
                 ].map(({ icon, text }) => (
                   <div key={text} className="flex items-center gap-3 text-sm">
                     {icon}
@@ -320,7 +417,11 @@ function AzarFaithLanding() {
               {orgs.slice(0, 4).map((org) => (
                 <Link key={org.id} to="/org/$id" params={{ id: org.id }} className="group">
                   <div className="aspect-square rounded-2xl overflow-hidden">
-                    <img src={org.photos[0]} alt="" className="w-full h-full object-cover group-hover:scale-[1.04] transition duration-300" />
+                    <img
+                      src={org.photos[0]}
+                      alt=""
+                      className="w-full h-full object-cover group-hover:scale-[1.04] transition duration-300"
+                    />
                   </div>
                   <p className="text-xs font-medium mt-2 truncate">{org.name}</p>
                 </Link>
@@ -333,7 +434,10 @@ function AzarFaithLanding() {
       {/* ─── CTA ─── */}
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 md:py-24 text-center">
         <h2 className="font-display text-3xl md:text-5xl text-balance">Ready to give faith?</h2>
-        <p className="mt-4 text-muted-foreground max-w-md mx-auto">Browse causes and set up a monthly gift today. Or register your org and let Nigeria's Christian community find you.</p>
+        <p className="mt-4 text-muted-foreground max-w-md mx-auto">
+          Browse causes and set up a monthly gift today. Or register your org and let Nigeria's
+          Christian community find you.
+        </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
             to="/discover"
