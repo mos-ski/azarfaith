@@ -235,8 +235,8 @@ function AzarFaithLanding() {
         <div className="grid md:grid-cols-2 gap-5 items-start">
           {ongoingCampaigns.map((c) => (
             <Link key={c.id} to="/campaign/$id" params={{ id: c.id }} className="group block">
-              <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all flex gap-0 md:gap-5 flex-col md:flex-row">
-                <div className="md:w-48 aspect-[16/10] md:aspect-auto overflow-hidden shrink-0">
+              <article className="bg-card border border-border rounded-3xl overflow-hidden hover:border-amber-200 hover:shadow-md transition-all flex flex-col md:grid md:grid-cols-[12rem_1fr] md:gap-5">
+                <div className="aspect-[16/10] md:aspect-auto md:h-full overflow-hidden shrink-0">
                   <img
                     src={c.cover}
                     alt=""
