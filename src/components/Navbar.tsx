@@ -1,11 +1,12 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Flame, ArrowRight, Menu, X } from "lucide-react";
+import { Flame, ArrowRight, Menu, X, Shield } from "lucide-react";
 import { useApp } from "@/lib/store";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const authed = useApp((s) => s.authed);
+  const adminRole = useApp((s) => s.adminRole);
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   const navLink = (to: string, label: string) => (
@@ -34,6 +35,15 @@ export function Navbar() {
               {navLink("/create", "Start campaign")}
               {navLink("/my-giving", "My giving")}
               {navLink("/profile", "Profile")}
+              {adminRole === "platform_admin" && (
+                <Link
+                  to="/admin"
+                  className={`transition text-sm flex items-center gap-1.5 ${path.startsWith("/admin") ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  <Shield className="w-3.5 h-3.5" />
+                  Admin
+                </Link>
+              )}
             </>
           ) : (
             <>
@@ -78,6 +88,16 @@ export function Navbar() {
               className="block py-2 text-sm text-muted-foreground"
             >
               Start campaign
+            </Link>
+          )}
+          {authed && adminRole === "platform_admin" && (
+            <Link
+              to="/admin"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-1.5 py-2 text-sm text-muted-foreground"
+            >
+              <Shield className="w-3.5 h-3.5" />
+              Admin Dashboard
             </Link>
           )}
           {!authed && (

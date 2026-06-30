@@ -46,7 +46,7 @@ export type Org = {
   photos: string[];
   videos: string[];
   campaignIds: string[];
-  verificationStatus: "unverified" | "pending" | "verified";
+  verificationStatus: "unverified" | "pending" | "verified" | "rejected";
   totalReceived: number;
   supporters: number;
 };
@@ -69,7 +69,7 @@ export type Campaign = {
   location: string;
   urgency: "low" | "medium" | "high" | "critical";
   createdAt: string;
-  verificationStatus: "unverified" | "pending" | "verified";
+  verificationStatus: "unverified" | "pending" | "verified" | "rejected";
   updates: Update[];
   comments: Comment[];
   donations: Donation[];
@@ -475,3 +475,282 @@ export const me = {
   totalGiven: 480000,
   verifications: ["BVN verified", "Phone verified", "Email verified"],
 };
+
+// ─── Admin Types ───────────────────────────────────────────
+
+export type UserRole = "donor" | "org_admin" | "platform_admin";
+export type UserStatus = "active" | "suspended";
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  avatar: string;
+  role: UserRole;
+  status: UserStatus;
+  phoneVerified: boolean;
+  emailVerified: boolean;
+  bvnVerified: boolean;
+  suspendedAt?: string;
+  suspendReason?: string;
+  joinedAt: string;
+  totalGiven: number;
+  donationsCount: number;
+  campaignsCreated: number;
+};
+
+export type PlatformSettings = {
+  platformFeePercent: number;
+  minDonation: number;
+  maxDonation: number;
+  maxTipAmount: number;
+  campaignExpiryDays: number;
+  autoApproveVerifiedOrgs: boolean;
+  requirePhoneForCampaigns: boolean;
+  reapplicationDays: number;
+  emailNotifications: boolean;
+  smsNotifications: boolean;
+  adminNotificationEmail: string;
+};
+
+export type AdminNotification = {
+  id: string;
+  type: "org_verification" | "campaign_moderation" | "user_report" | "system";
+  title: string;
+  message: string;
+  read: boolean;
+  createdAt: string;
+  link?: string;
+};
+
+// ─── Admin Mock Data ───────────────────────────────────────
+
+const avatarUrls = [p(0), p(1), p(2), p(3), p(4), p(5), p(6), p(7), p(8), p(9)];
+
+export const users: User[] = [
+  {
+    id: "u1",
+    name: "Tunde Adebayo",
+    email: "tunde@azarfaith.com",
+    phone: "+2348012345678",
+    avatar: avatarUrls[4],
+    role: "platform_admin",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: true,
+    joinedAt: "2024-01-15",
+    totalGiven: 480000,
+    donationsCount: 34,
+    campaignsCreated: 0,
+  },
+  {
+    id: "u2",
+    name: "Chidinma Okoro",
+    email: "chidinma@gmail.com",
+    phone: "+2348023456789",
+    avatar: avatarUrls[0],
+    role: "donor",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: false,
+    joinedAt: "2024-03-10",
+    totalGiven: 320000,
+    donationsCount: 22,
+    campaignsCreated: 0,
+  },
+  {
+    id: "u3",
+    name: "Pastor Emeka Nwosu",
+    email: "emeka@churchunderthebridge.org",
+    phone: "+2348034567890",
+    avatar: avatarUrls[3],
+    role: "org_admin",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: true,
+    joinedAt: "2024-02-20",
+    totalGiven: 150000,
+    donationsCount: 12,
+    campaignsCreated: 2,
+  },
+  {
+    id: "u4",
+    name: "Grace Adekunle",
+    email: "grace@graceharvest.org",
+    phone: "+2348045678901",
+    avatar: avatarUrls[1],
+    role: "org_admin",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: false,
+    joinedAt: "2024-04-05",
+    totalGiven: 85000,
+    donationsCount: 8,
+    campaignsCreated: 1,
+  },
+  {
+    id: "u5",
+    name: "Kolade Akinwale",
+    email: "kolade@capros.org",
+    phone: "+2348056789012",
+    avatar: avatarUrls[9],
+    role: "org_admin",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: false,
+    bvnVerified: false,
+    joinedAt: "2024-12-01",
+    totalGiven: 0,
+    donationsCount: 0,
+    campaignsCreated: 1,
+  },
+  {
+    id: "u6",
+    name: "Funke Oladipo",
+    email: "funke@yahoo.com",
+    phone: "+2348067890123",
+    avatar: avatarUrls[2],
+    role: "donor",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: true,
+    joinedAt: "2024-05-18",
+    totalGiven: 275000,
+    donationsCount: 19,
+    campaignsCreated: 0,
+  },
+  {
+    id: "u7",
+    name: "David Ogundimu",
+    email: "david.og@gmail.com",
+    phone: "+2348078901234",
+    avatar: avatarUrls[5],
+    role: "donor",
+    status: "suspended",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: false,
+    suspendedAt: "2025-05-20",
+    suspendReason: "Reported for suspicious donation patterns",
+    joinedAt: "2024-06-22",
+    totalGiven: 45000,
+    donationsCount: 5,
+    campaignsCreated: 0,
+  },
+  {
+    id: "u8",
+    name: "Blessing Chukwu",
+    email: "blessing.c@gmail.com",
+    phone: "+2348089012345",
+    avatar: avatarUrls[6],
+    role: "donor",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: false,
+    bvnVerified: false,
+    joinedAt: "2025-01-08",
+    totalGiven: 120000,
+    donationsCount: 9,
+    campaignsCreated: 0,
+  },
+  {
+    id: "u9",
+    name: "Isaac Bello",
+    email: "isaac@lifegate.edu.ng",
+    phone: "+2348090123456",
+    avatar: avatarUrls[7],
+    role: "org_admin",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: false,
+    joinedAt: "2024-09-14",
+    totalGiven: 60000,
+    donationsCount: 4,
+    campaignsCreated: 1,
+  },
+  {
+    id: "u10",
+    name: "Ngozi Eze",
+    email: "ngozi@plateaurelief.org",
+    phone: "+2348001234567",
+    avatar: avatarUrls[8],
+    role: "donor",
+    status: "active",
+    phoneVerified: true,
+    emailVerified: true,
+    bvnVerified: true,
+    joinedAt: "2025-02-14",
+    totalGiven: 200000,
+    donationsCount: 11,
+    campaignsCreated: 1,
+  },
+];
+
+export const platformSettings: PlatformSettings = {
+  platformFeePercent: 2.5,
+  minDonation: 100,
+  maxDonation: 5000000,
+  maxTipAmount: 2500,
+  campaignExpiryDays: 90,
+  autoApproveVerifiedOrgs: false,
+  requirePhoneForCampaigns: true,
+  reapplicationDays: 30,
+  emailNotifications: true,
+  smsNotifications: true,
+  adminNotificationEmail: "admin@azarfaith.com",
+};
+
+export const adminNotifications: AdminNotification[] = [
+  {
+    id: "an1",
+    type: "org_verification",
+    title: "New organization registered",
+    message: "CAPROS Nigeria has registered and is awaiting verification.",
+    read: false,
+    createdAt: "2025-05-14",
+    link: "/admin/orgs/o4",
+  },
+  {
+    id: "an2",
+    type: "org_verification",
+    title: "New organization registered",
+    message: "Lifegate Christian Academy has registered and is awaiting verification.",
+    read: false,
+    createdAt: "2025-04-20",
+    link: "/admin/orgs/o5",
+  },
+  {
+    id: "an3",
+    type: "campaign_moderation",
+    title: "Campaign pending review",
+    message: "Emergency food for displaced Christians in Mangu is pending moderation.",
+    read: false,
+    createdAt: "2025-05-14",
+    link: "/admin/campaigns/gfc6",
+  },
+  {
+    id: "an4",
+    type: "campaign_moderation",
+    title: "Campaign pending review",
+    message: "Missionary Kolade — Wells & Community Work needs review.",
+    read: true,
+    createdAt: "2024-12-02",
+    link: "/admin/campaigns/gfc3",
+  },
+  {
+    id: "an5",
+    type: "user_report",
+    title: "User suspended",
+    message: "David Ogundimu was suspended for suspicious activity.",
+    read: true,
+    createdAt: "2025-05-20",
+    link: "/admin/users/u7",
+  },
+];

@@ -3,9 +3,16 @@ import {
   campaigns as campaignSeed,
   orgs as orgSeed,
   myRecurringDonations as recurringDonationsSeed,
+  users as usersSeed,
+  platformSettings as settingsSeed,
+  adminNotifications as notificationsSeed,
   type Campaign,
   type Org,
   type RecurringDonation,
+  type User,
+  type PlatformSettings,
+  type AdminNotification,
+  type UserRole,
 } from "./mock";
 
 type Draft = {
@@ -55,10 +62,25 @@ type State = {
   recurringDonations: RecurringDonation[];
   addRecurringDonation: (r: RecurringDonation) => void;
   cancelRecurringDonation: (id: string) => void;
+
+  // ─── Admin ───
+  adminRole: UserRole | null;
+  setAdminRole: (role: UserRole | null) => void;
+  users: User[];
+  platformSettings: PlatformSettings;
+  adminNotifications: AdminNotification[];
+  verifyOrg: (id: string, status: "verified" | "rejected", notes?: string) => void;
+  moderateCampaign: (id: string, status: "verified" | "rejected", notes?: string) => void;
+  suspendUser: (id: string, reason: string) => void;
+  reactivateUser: (id: string) => void;
+  updateUserRole: (id: string, role: UserRole) => void;
+  markNotificationRead: (id: string) => void;
+  markAllNotificationsRead: () => void;
+  updatePlatformSettings: (settings: Partial<PlatformSettings>) => void;
 };
 
 export const useApp = create<State>((set) => ({
-  authed: false,
+  authed: true,
   setAuthed: (v) => set({ authed: v }),
 
   campaigns: campaignSeed,
@@ -96,5 +118,65 @@ export const useApp = create<State>((set) => ({
       recurringDonations: s.recurringDonations.map((r) =>
         r.id === id ? { ...r, active: false } : r,
       ),
+    })),
+
+  // ─── Admin ───
+  adminRole: "platform_admin",
+  setAdminRole: (role) => set({ adminRole: role }),
+  users: usersSeed,
+  platformSettings: settingsSeed,
+  adminNotifications: notificationsSeed,
+
+  verifyOrg: (id, status, notes) =>
+    set((s) => ({
+      orgs: s.orgs.map((o) => (o.id === id ? { ...o, verificationStatus: status } : o)),
+    })),
+
+  moderateCampaign: (id, status, notes) =>
+    set((s) => ({
+      campaigns: s.campaigns.map((c) => (c.id === id ? { ...c, verificationStatus: status } : c)),
+    })),
+
+  suspendUser: (id, reason) =>
+    set((s) => ({
+      users: s.users.map((u) =>
+        u.id === id
+          ? {
+              ...u,
+              status: "active" as const,
+              suspendedAt: new Date().toISOString(),
+              suspendReason: reason,
+            }
+          : u,
+      ),
+    })),
+
+  reactivateUser: (id) =>
+    set((s) => ({
+      users: s.users.map((u) =>
+        u.id === id
+          ? { ...u, status: "active" as const, suspendedAt: undefined, suspendReason: undefined }
+          : u,
+      ),
+    })),
+
+  updateUserRole: (id, role) =>
+    set((s) => ({
+      users: s.users.map((u) => (u.id === id ? { ...u, role } : u)),
+    })),
+
+  markNotificationRead: (id) =>
+    set((s) => ({
+      adminNotifications: s.adminNotifications.map((n) => (n.id === id ? { ...n, read: true } : n)),
+    })),
+
+  markAllNotificationsRead: () =>
+    set((s) => ({
+      adminNotifications: s.adminNotifications.map((n) => ({ ...n, read: true })),
+    })),
+
+  updatePlatformSettings: (newSettings) =>
+    set((s) => ({
+      platformSettings: { ...s.platformSettings, ...newSettings },
     })),
 }));
