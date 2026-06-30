@@ -7,9 +7,11 @@ import {
   Settings,
   ArrowLeft,
   Shield,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/lib/store";
+import { useSidebar } from "./AdminLayout";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, to: "/admin" as const },
@@ -22,20 +24,31 @@ const navItems = [
 export function AdminSidebar() {
   const matchRoute = useMatchRoute();
   const { orgs, campaigns } = useApp();
+  const { setOpen } = useSidebar();
 
   const pendingOrgs = orgs.filter((o) => o.verificationStatus === "pending").length;
   const pendingCampaigns = campaigns.filter((c) => c.verificationStatus === "pending").length;
 
+  const handleNavClick = () => setOpen(false);
+
   return (
-    <aside className="fixed inset-y-0 left-0 z-50 flex w-60 flex-col bg-gray-950">
-      <div className="flex h-16 items-center gap-2.5 border-b border-gray-800 px-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500">
-          <Shield className="h-4 w-4 text-white" />
+    <aside className="flex h-full w-60 flex-col bg-gray-950">
+      <div className="flex h-16 items-center justify-between border-b border-gray-800 px-5">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500">
+            <Shield className="h-4 w-4 text-white" />
+          </div>
+          <span className="font-display text-lg font-bold text-white">AzarFaith</span>
+          <span className="ml-1 rounded-md bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-amber-400">
+            ADMIN
+          </span>
         </div>
-        <span className="font-display text-lg font-bold text-white">AzarFaith</span>
-        <span className="ml-1 rounded-md bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-amber-400">
-          ADMIN
-        </span>
+        <button
+          onClick={() => setOpen(false)}
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white lg:hidden"
+        >
+          <X className="h-4 w-4" />
+        </button>
       </div>
 
       <nav className="flex-1 space-y-1 px-3 py-4">
@@ -56,6 +69,7 @@ export function AdminSidebar() {
             <Link
               key={item.to}
               to={item.to}
+              onClick={handleNavClick}
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 isActive
@@ -78,6 +92,7 @@ export function AdminSidebar() {
       <div className="border-t border-gray-800 p-3">
         <Link
           to="/"
+          onClick={handleNavClick}
           className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />

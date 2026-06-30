@@ -104,8 +104,8 @@ function AdminUsers() {
             description="No users match your current filters."
           />
         ) : (
-          <div className="rounded-xl border border-gray-200 bg-white">
-            <Table>
+          <div className="rounded-xl border border-gray-200 bg-white overflow-x-auto">
+            <Table className="min-w-[800px]">
               <TableHeader>
                 <TableRow>
                   <TableHead>User</TableHead>
